@@ -24,4 +24,3 @@ def solution(n, build_frame):
                 answer.append([x, y, a])
     answer.sort()
     return answer
-
