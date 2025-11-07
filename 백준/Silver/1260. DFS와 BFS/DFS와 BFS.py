@@ -1,38 +1,46 @@
 N, M, V = map(int, input().split())
 
-graph = [[] for _ in range(N + 1)]
+arr=[[] for _ in range(N + 1) ]
 
-for _ in range(M):
-    x, y = map(int, input().split())
-    graph[x].append(y)
-    graph[y].append(x)
-
-for i in range(1, N + 1):
-    graph[i].sort()
-    
-
+for i in range(M):
+   n, m = map(int, input().split())
+   arr[n].append(m)
+   arr[m].append(n)
+   
 visited = [False] * (N + 1)
+dfs_print = []
+def dfs(n):
+    if visited[n] :
+        return
+    if not visited[n]:
+        dfs_print.append(n)
+        visited[n] = True
+        temp = arr[n]
+        temp.sort()
+        for ar in temp:
+            dfs(ar)
 
-def dfs(v):
-    global visited
-    visited[v] = True
-    print(v, end=" ")
-    for next in graph[v]:
-        if not visited[next]:
-            dfs(next)
-
-def bfs():
-    global q, visited
-    while q:
-        a = q.pop(0)
-        print(a, end=" ")
-        for next in range(1, N + 1):
-            if not visited[next] and next in graph[a]:
-                visited[next] = True
-                q.append(next)
 dfs(V)
-print()
-q = [V]
+print(*dfs_print)
+        
+from collections import deque
+bfs = []
+bfs = deque()
+bfs.append(V)
+bfs.extend(arr[V])
+bfs_print = []
 visited = [False] * (N + 1)
-visited[V] = True    
-bfs()
+
+while bfs :
+    now = bfs.popleft()
+    if visited[now] :
+        continue
+    bfs_print.append(now)
+    visited[now] = True
+    temp = arr[now]
+    temp.sort()
+    for ar in temp:
+        if not visited[ar]:
+            bfs.append(ar)
+            
+print(*bfs_print)
