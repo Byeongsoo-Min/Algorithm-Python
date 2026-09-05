@@ -1,14 +1,13 @@
 def solution(s):
-    answer = True
     left = 0
-    right = 0
-    for c in list(s):
-        if c == "(":
+    for a in s :
+        if a == '(' :
             left += 1
         else :
-            right += 1
-            if right > left:
-                return False
-    if right != left:
+            left -= 1
+        if left < 0 :
+            return False
+    if left != 0 :
         return False
     return True
+        
