@@ -1,10 +1,9 @@
-import math
 def solution(brown, yellow):
-    all_kind = []
-    square = brown + yellow
-    for i in range(1, int(math.sqrt(yellow)) + 1):
-        if yellow % i == 0:
-            if (i + 2) * (yellow // i + 2) == square :
-                all_kind.append(i + 2) 
-                all_kind.append(yellow // i + 2)
-    return sorted(all_kind, reverse=True)
+    full = brown + yellow
+    for i in range(3, full + 1) :
+        if (full) % i != 0 :
+            continue
+        if i < (full) // i :
+            continue
+        if (i - 2) * (full // i - 2) == yellow :
+            return [i, (brown + yellow) // i]
