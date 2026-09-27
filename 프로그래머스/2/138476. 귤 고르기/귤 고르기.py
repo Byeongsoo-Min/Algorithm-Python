@@ -1,15 +1,15 @@
 def solution(k, tangerine):
-    cnt_dict = {}
+    dict_tang = {}
+    answer =0 
     for i in tangerine:
-        if i in cnt_dict :
-            cnt_dict[i] += 1
+        if i not in dict_tang.keys():
+            dict_tang[i] = 1
         else :
-            cnt_dict[i] = 1
-    sorted_array = []
-    sorted_array = sorted(cnt_dict.values(), reverse=True)
-    for idx, value in enumerate(sorted_array):
-        k -= value
+            dict_tang[i] += 1
+    ranged_tang = dict(sorted(dict_tang.items(), key=lambda x:x[1], reverse=True))
+    for i in ranged_tang:
+        k -= ranged_tang[i]
+        answer += 1
         if k <= 0 :
-            return idx + 1
+            return answer
         
-    # return answer
