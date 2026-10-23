@@ -1,4 +1,3 @@
 def solution(s):
-    arr = list(map(int, s.split()))
-    return ' '.join([str(min(arr)), str(max(arr))])
-    
+    asd = list(map(int, s.split()))
+    return str(min(asd)) + ' ' + str(max(asd))
